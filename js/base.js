@@ -1,0 +1,2 @@
+myDataConfig = new dataConfig();
+

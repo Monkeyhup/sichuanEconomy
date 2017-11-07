@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/main.css" />
+		<link rel="stylesheet" type="text/css" href="lib/semantic/semantic.min.css" />
+		<link rel="stylesheet" type="text/css" href="lib/bootstrap-3.3.0-dist/dist/css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="lib/jspanel/vendor/jquery-ui-1.12.1.complete/jquery-ui.css" />
+		<link rel="stylesheet" type="text/css" href="lib/jspanel/jquery.jspanel.css" />
+		<link rel="stylesheet" type="text/css" href="lib/jstree/themes/default/style.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/poorItem.css">
+	</head>
+	<style type="text/css">
+		body {
+			background-image: url(img/background.png);
+			background-size: 100% 100%
+		}
+		.jsPanel-title{
+			font-family: "微软雅黑" !important;
+		}
+		li[aria-selected=true]{
+			background: rgb(75,211,255) !important;
+		}
+		.jsglyph-close{
+			color: white !important;
+			margin-right: 10px !important;
+		}
+		.iden {
+			height: 100vh;
+		}
+
+		#iden-panel {
+			position: relative;
+			top: 8%;
+		}
+
+		#head {
+			position: fixed;
+			height: 6%;
+			width: 100%;
+		}
+
+		#headPic {
+			position: relative;
+			width: 100%;
+			height: 90%;
+		}
+
+		#sichuanMap {
+			width: 100%;
+			height: 100vh;
+		}
+
+		#pieChart{
+			width: 100%;
+			height: 100vh;
+			margin-top: 70px
+		}
+		ul{
+			margin:10px 0 10px 0 !important;
+			font-size: 24px !important;
+		}
+		li{
+			font-size: 18px !important;
+			color: white;
+		}
+
+		.chart {
+			height: 95vh;
+		}
+		#shut{
+			position: fixed;
+			top:85%;
+			left: 65%;
+			z-index: 333;
+		}
+		#pHead{
+			width: 98%;
+			height: 10%;
+			background-color: rgba(30,201,255,1)!important;
+			border-radius: 15px;
+			margin: 5px;
+
+		}
+		#pBody{
+			width: 100%;
+			height: 100%;
+			border-bottom-left-radius: 10px ;
+			border-bottom-right-radius: 10px;
+			margin-top: -10%;
+			z-index: 5;
+		}
+		#bHead{
+			width: 98%;
+			height: 10%;
+			background-color: rgba(30,201,255,1)!important;
+			border-radius: 15px;
+			margin: 5px;
+
+		}
+		#bBody{
+			width: 100%;
+			height: 100%;
+			border-bottom-left-radius: 10px ;
+			border-bottom-right-radius: 10px;
+			margin-top: -10%;
+			z-index: 5;
+		}
+	</style>
+
+	<body>
+		<div id="head">
+			<img id="headPic" src="img/headBg.png" />
+		</div>
+		<div class="col-lg-3 iden">
+			<div id="iden-panel" class="fl" style="width: 100%;">
+				<div id="iden-box">
+					<div id="iden-idens" class="ui message clearfix">
+						<div class="pull-left">
+							<div class="ui secondary vertical menu small teal" id="switcher-report" style="margin:10px 0 10px 0">
+								<a class="item0 item active" style="background:url(img/1.png)" id="economy"></a>
+								<a class="item1 item " style="background:url(img/2.png)" id="statistic"></a>
+								<a class="item2 item " style="background:url(img/3.png)" id="poorItem"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-6" style="display: none" id="item_map">
+			<div id="sichuanMap" class="map_bg">
+				<!--地图内容处-->
+			</div>
+		</div>
+		<div class="col-lg-3 chart" style="display: none" id="item_pie">
+			<!--<a href="#" id="showLable" class="btn btn-default hidden" style="margin-left:390px">隐藏图例</a>-->
+			<div style="background: url('img/bg_pie.png');height: 88vh;width:100%">
+				<div id="pieChart" >
+					<!--饼图内容处-->
+				</div>
+			</div>
+
+		</div>
+		<div class="col-lg-9" id="item_cover">
+			<div class="main">
+				<div  class="out-block" id="top">
+					<span class="logo-txt" id="txt-1">
+					财政展示专项
+					</span>
+					<span class="logo-txt" id="txt-2">
+					把握四川发展
+					</span>
+					<div class="one-block" id="one-div">
+						<img src="img/cover/1.png">
+					</div>
+				</div>
+				<div class="out-block" id="mid">
+					<div class="one-block" id="two-div">
+						<img src="img/cover/2.png">
+					</div>
+					<div class="one-block block-txt" id="three-div">
+						扶贫纪事
+					</div >
+					<div class="one-block" id="four-div">
+						<img src="img/cover/3.png">
+					</div>
+					<div class="one-block block-txt" id="five-div">
+						十项民生
+					</div>
+					<div class="one-block" id="six-div">
+						<img src="img/cover/4.png">
+					</div>
+				</div>
+				<div class="out-block" id="bottom">
+					<div class="one-block block-txt" id="seven-div">
+						城镇化
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="lib/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/dataConfig.js " type="text/javascript" charset="utf-8"></script>
+	<script src="lib/bootstrap-3.3.0-dist/dist/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/jspanel/vendor/jquery-ui-1.12.1.complete/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/jspanel/jquery.jspanel.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/jspanel/jquery.jspanel-compiled.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/jstree/jstree.js" type="text/javascript" charset="utf-8"></script>
+	
+	<script src="lib/echarts.js " type="text/javascript" charset="utf-8"></script>
+	<script src="js/base.js " type="text/javascript" charset="utf-8"></script>
+	<script src="lib/sichuansheng.js " type="text/javascript" charset="utf-8"></script>
+	<script src="js/poorItem.js" type="text/javascript" charset="utf-8"></script>
+</html>

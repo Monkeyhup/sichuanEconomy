@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/main.css" />
+		<link rel="stylesheet" type="text/css" href="lib/semantic/semantic.min.css" />
+		<link rel="stylesheet" type="text/css" href="lib/bootstrap-3.3.0-dist/dist/css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="lib/jspanel/vendor/jquery-ui-1.12.1.complete/jquery-ui.css" />
+		<link rel="stylesheet" type="text/css" href="lib/jspanel/jquery.jspanel.css" />
+		<link rel="stylesheet" type="text/css" href="lib/jstree/themes/default/style.min.css" />
+	</head>
+	<style type="text/css">
+		body {
+			background-image: url(img/background.png);
+			background-size: 100% 100%
+		}
+		.jsPanel-title{
+			font-family: "微软雅黑" !important;
+		}
+		li[aria-selected=true]{
+			background: rgb(75,211,255) !important;
+		}
+		.jsglyph-close{
+			color: white !important;
+			margin-right: 10px !important;
+		}
+		.iden {
+			height: 100vh;
+		}
+		
+		#iden-panel {
+			position: relative;
+			top: 8%;
+		}
+		
+		#head {
+			position: fixed;
+			height: 6%;
+			width: 100%;
+		}
+		
+		#headPic {
+			position: relative;
+			width: 100%;
+			height: 90%;
+		}
+		
+		#sichuanMap {
+			width: 100%;
+			height: 100vh;
+		}
+		
+		#pieChart {
+			/*margin-top: 70px;*/
+			position: relative;
+			top: 10%;
+			width: 100%;
+			height: 40%;
+			border: 1px solid rgba(92, 194, 224, 0.8);
+			border-radius: 10px;
+		}
+		
+		#barChart {
+			/*margin-top: 30px;*/
+			position: relative;
+			top: 15%;
+			width: 100%;
+			height: 40%;
+			border: 1px solid rgba(92, 194, 224, 0.8);
+			border-radius: 10px;
+		}
+		ul{
+			margin:10px 0 10px 0 !important; 
+			font-size: 24px !important;
+		}
+		li{
+			font-size: 18px !important;
+			color: white;
+		}
+		.chart {
+			height: 100vh;
+		}
+		
+		#shut {
+			position: fixed;
+			top: 85%;
+			left: 65%;
+			z-index: 333;
+		}
+		
+		#pHead {
+			width: 98%;
+			height: 10%;
+			background-color: rgba(30, 201, 255, 1)!important;
+			border-radius: 15px;
+			margin: 5px;
+		}
+		
+		#pBody {
+			width: 100%;
+			height: 100%;
+			border-bottom-left-radius: 10px;
+			border-bottom-right-radius: 10px;
+			margin-top: -10%;
+			z-index: 5;
+		}
+		
+		#bHead {
+			width: 98%;
+			height: 10%;
+			background-color: rgba(30, 201, 255, 1)!important;
+			border-radius: 15px;
+			margin: 5px;
+		}
+		
+		#bBody {
+			width: 100%;
+			height: 100%;
+			border-bottom-left-radius: 10px;
+			border-bottom-right-radius: 10px;
+			margin-top: -10%;
+			z-index: 5;
+			
+		}
+		
+		#shut {
+			position: fixed;
+			top: 15%;
+			left: 25%;
+			z-index: 333;
+		}
+		
+	</style>
+
+	<body>
+		<div id="head">
+			<img id="headPic" src="img/headBg.png" />
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-3 iden">
+			<div id="iden-panel" class="fl" style="width: 100%;">
+				<div id="iden-box">
+					<div id="iden-idens" class="ui message clearfix">
+						<div class="pull-left">
+							<div class="ui secondary vertical menu small teal" id="switcher-report" style="margin:10px 0 10px 0">
+								<a class="item0 item active" style="background:url(img/1.png)" id="economy"></a>
+								<a class="item1 item " style="background:url(img/2.png)" id="statistic"></a>
+								<a class="item2 item " style="background:url(img/3.png)" id="poorItem"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-6 col-md-6 col-sm-6">
+			<button id="shut" class="hidden">返回上级</button>
+			<div id="sichuanMap"></div>
+
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-3 chart ">
+			<div id="pieChart" class="hidden">
+				<div id="pHead">
+
+				</div>
+				<div id="pBody">
+
+				</div>
+			</div>
+			<div id="barChart" class="hidden">
+				<div id="bHead">
+				</div>
+				<div id="bBody">
+
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="lib/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/dataConfig.js " type="text/javascript" charset="utf-8"></script>
+	<script src="lib/bootstrap-3.3.0-dist/dist/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/jspanel/vendor/jquery-ui-1.12.1.complete/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/jspanel/jquery.jspanel.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/jspanel/jquery.jspanel-compiled.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/jstree/jstree.js" type="text/javascript" charset="utf-8"></script>
+
+	<script src="lib/echarts.js " type="text/javascript" charset="utf-8"></script>
+	<script src="lib/layer-v3.0.3/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+
+	<script src="lib/sichuansheng.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/echarts/chengdu.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/echarts/leshan.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/echarts/neijiang.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/echarts/liangshan.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/echarts/nanchong.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/echarts/yibin.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/echarts/bazhong.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/echarts/guangyuan.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/echarts/guangan.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/echarts/deyang.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/echarts/panzhihua.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/echarts/luzhou.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/echarts/ganzi.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/echarts/meishan.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/echarts/mianyang.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/echarts/zigong.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/echarts/ziyang.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/echarts/dazhou.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/echarts/suining.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/echarts/aba.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/echarts/yaan.js" type="text/javascript" charset="utf-8"></script>
+
+	<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+
+</html>
